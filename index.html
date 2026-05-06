@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEC Sentiment Analyzer | GitHub Pages Ready</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="badge">100% EN EL NAVEGADOR</div>
+            <h1>Analizador de Sentimiento SEC</h1>
+            <p>Sube un archivo o introduce un enlace de la SEC. El modelo <strong>Qwen2 0.5B Instruct</strong> correrá usando tu tarjeta gráfica directamente en el navegador.</p>
+        </header>
+
+        <main>
+            <!-- Panel de progreso del modelo -->
+            <div id="model-loading-panel" class="loading-panel">
+                <div class="loading-header">
+                    <span class="loading-icon">🤖</span>
+                    <h3>Cargando Modelo Qwen2...</h3>
+                </div>
+                <p id="loading-text" class="loading-text">Iniciando WebGPU Engine...</p>
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+                <p class="loading-note">Nota: La primera vez descargará aprox. 300MB. Quedará guardado en la memoria caché de tu navegador para la próxima vez.</p>
+            </div>
+
+            <form id="analyze-form" style="display: none;">
+                <div class="tabs">
+                    <button type="button" class="tab-btn active" data-tab="url">Enlace SEC</button>
+                    <button type="button" class="tab-btn" data-tab="file">Subir Archivo</button>
+                </div>
+
+                <div class="input-container active" id="url-container">
+                    <label for="url-input">URL del Documento de la SEC</label>
+                    <input type="url" id="url-input" name="url" placeholder="https://www.sec.gov/Archives/edgar/data/.../document.htm">
+                </div>
+
+                <div class="input-container" id="file-container" style="display: none;">
+                    <label for="file-input">Archivo del Documento (HTML o TXT)</label>
+                    <div class="file-drop-area">
+                        <span class="file-msg">Arrastra tu archivo aquí o haz clic para subir</span>
+                        <input type="file" id="file-input" name="file" accept=".htm,.html,.txt">
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn">
+                    <span class="btn-text">Analizar Documento</span>
+                    <span class="loader" style="display: none;"></span>
+                </button>
+            </form>
+
+            <div id="result-container" class="result-card hidden">
+                <div class="result-header">
+                    <h3>Resultado del Análisis</h3>
+                    <div id="sentiment-badge" class="sentiment-badge"></div>
+                </div>
+                <div class="result-body" id="result-text">
+                    <!-- El resultado aparecerá aquí -->
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Powered by <strong>WebLLM & WebGPU</strong>. ¡Totalmente compatible con GitHub Pages!</p>
+        </footer>
+    </div>
+
+    <!-- El script debe ser de tipo module para importar ESM -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
